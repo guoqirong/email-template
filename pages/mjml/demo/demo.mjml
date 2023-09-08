@@ -1,0 +1,57 @@
+<mjml>
+  <mj-head>
+    <mj-title>Hello Register</mj-title>
+    <mj-attributes>
+      <!-- 1、定义 global 样式 --> 
+      <!-- 针对某个元素 -->
+      <mj-text line-height="150%" />
+      <!-- 针对所有元素 -->
+      <mj-all font-family="Arial" />
+      <!-- 2、定义 class 样式 -->
+      <mj-class name="title" font-size="35px" align="center" />
+    </mj-attributes>
+    <!-- 3、定义 css 样式 -->
+    <mj-style inline="inline">
+      .sign div { padding-left : 5px !important; color:#8C8C8C !important; }
+    </mj-style>
+  </mj-head>
+  <mj-body>
+    <mj-wrapper background-url="https://i.loli.net/2019/07/14/5d2b00fad302f18835.png" background-repeat="no-repeat" background-size="100% 100%" padding="30px">
+      <mj-section>
+        <mj-column>
+          <!-- 4、定义 inline 样式 -->
+          <mj-image width="100px" src="https://mjml.io/documentation/images/logo.png"></mj-image>
+        </mj-column>
+      </mj-section>
+      <mj-section>
+        <mj-column>
+          <mj-text mj-class="title">Register Success! ${{demo.test}}$</mj-text>
+          <mj-spacer height="10px" />
+          <mj-text>Dear [username],</mj-text>
+          <mj-text>Thank you for the registration, you are welcomed to be our first tier users. Please click the link to activate your account:</mj-text>
+          <mj-button href="http://www.google.com"> Activate </mj-button>
+        </mj-column>
+      </mj-section>
+      <mj-section>
+        <mj-column width="70%">
+          <mj-social>
+            <mj-social-element name="facebook" href="https://mjml.io/">
+              Facebook
+            </mj-social-element>
+            <mj-social-element name="google" href="https://mjml.io/">
+              Google
+            </mj-social-element>
+            <mj-social-element name="twitter" href="https://mjml.io/">
+              Twitter
+            </mj-social-element>
+          </mj-social>
+        </mj-column>
+        <mj-column width="30%">
+          <mj-text css-class="sign">
+            COPYRIGHT<br/> @2019
+          </mj-text>
+        </mj-column>
+      </mj-section>
+    </mj-wrapper>
+  </mj-body>
+</mjml>

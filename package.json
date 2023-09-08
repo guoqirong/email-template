@@ -1,0 +1,30 @@
+{
+  "name": "email-template",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "mjml": "^4.14.1",
+    "path": "^0.12.7",
+    "typescript": "^5.2.2",
+    "yargs": "^17.7.2"
+  },
+  "scripts": {
+    "gen:locales": "gulp gen:locales",
+    "build:html": "ts-node scripts/mjml2html.ts --inpath ./pages/mjml --outpath ./pages/html",
+    "build:all": "npm run build:html && npm run gen:locales"
+  },
+  "devDependencies": {
+    "@types/gulp": "^4.0.13",
+    "@types/node": "^20.5.9",
+    "@types/through2": "^2.0.38",
+    "@types/yargs": "^17.0.24",
+    "gulp": "^4.0.2",
+    "gulp-html-i18n": "^0.16.0",
+    "through2": "^4.0.2",
+    "ts-node": "^10.9.1"
+  }
+}
