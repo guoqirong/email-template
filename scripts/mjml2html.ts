@@ -44,21 +44,21 @@ async function main() {
   fileDisplay(argv.inpath, (arr)=> {
     console.log(arr)
     arr.forEach(path => {
-      const paths = path.split('/')
-      const filePathIndex = paths.findIndex(item => item === 'mjml');
-      const filePaths = paths.splice(filePathIndex + 1, paths.length - filePathIndex);
-      paths.splice(filePathIndex + 1, 0, ...filePaths);
-      const subPaths = paths.splice(filePathIndex + 1, paths.length - filePathIndex - 2);
+      const splitStr = argv.inpath.startsWith('./') ? argv.inpath.substring(1) : argv.inpath;
+      const paths = path.split(splitStr);
+      const lastIndex = paths[1].lastIndexOf('/');
+      const subPath = paths[1].substring(0, lastIndex + 1);
+      const [fileName] = paths[1].substring(lastIndex + 1).split('.');
 
-      fs.stat(`${argv.outpath}/${subPaths.join('/')}`, async (_, stats) => {
+      fs.stat(`${argv.outpath}/${subPath}`, async (_, stats) => {
         if (!stats) {
           // 不存在创建文件夹
-          fs.mkdir(`${argv.outpath}/${subPaths.join('/')}`, { recursive: true }, err => {
+          fs.mkdir(`${argv.outpath}/${subPath}`, { recursive: true }, err => {
             if (err) {
               console.error(err);
             } else {
               try {
-                const cmd = `mjml ${argv.inpath}/${filePaths.join('/')} -o ${argv.outpath}/${subPaths.length > 0 ? subPaths.join('/') + '/':''}${paths[paths.length - 1].split('.')[0]}.html`;
+                const cmd = `mjml ${argv.inpath}${paths[1]} -o ${argv.outpath}${subPath}${fileName}.html`;
                 console.log('$'+cmd);
                 console.log(processExec.execSync(cmd).toString());
               } catch (e) {
@@ -68,7 +68,7 @@ async function main() {
           });
         } else {
           try {
-            const cmd = `mjml ${argv.inpath}/${filePaths.join('/')} -o ${argv.outpath}/${subPaths.length > 0 ? subPaths.join('/') + '/':''}${paths[paths.length - 1].split('.')[0]}.html`;
+            const cmd = `mjml ${argv.inpath}${paths[1]} -o ${argv.outpath}${subPath}${fileName}.html`;
             console.log('$'+cmd);
             console.log(processExec.execSync(cmd).toString());
           } catch (e) {
